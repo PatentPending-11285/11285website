@@ -13,6 +13,8 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Share+Tech&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Graduate&display=swap" rel="stylesheet">
 
     <style>
         html {
@@ -102,6 +104,21 @@
             transform: scale(0.94);
         }
 
+        .school-brand {
+            font-family: 'Graduate', sans-serif;
+            font-weight: 700;
+            letter-spacing: -1px;
+
+            /* ASU colors */
+            color: #FFC627;
+            -webkit-text-stroke: 5px #8C1D40;
+
+            /* Prevents the outline from looking doubled */
+            text-shadow: none;
+
+            paint-order: stroke fill;
+        }
+
         /* Nav buttons: white outline, transparent fill, compact sizing */
         .btn-nav-outline {
             background-color: transparent;
@@ -143,6 +160,13 @@
             min-height: 100vh;
         }
 
+        .outlined-title {
+            font-family: 'Mulish', sans-serif;
+            color: #ffffff;
+            /*-webkit-text-stroke: 1px #000000; */
+            text-shadow: none;
+        }
+        
         .instagram-btn {
             display: inline-flex;
             align-items: center;
@@ -158,10 +182,6 @@
 
         .asu-red {
             background-color: #8C1D40;
-        }
-
-        h1, p {
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
         }
 
         .reveal {
@@ -264,6 +284,23 @@
                 font-size: 1.3rem;
             }
         }
+
+        .school-team-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .mc-logo {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
     </style>
 </head>
 <body>
@@ -301,9 +338,10 @@
         <a href="index.html" class="btn btn-home">Home</a>
         <a href="roster.html" class="btn btn-nav-outline">Team</a>
         <a href="robots.html" class="btn btn-nav-outline">Our Robots</a>
-        <a href="awards.html" class="btn btn-nav-outline">Award History</a>
+        <a href="awards.html" class="btn btn-nav-outline">Our Awards</a>
+        <a href="roster.html" class="btn btn-nav-outline">Our Team</a>
         <a href="Schedule.html" class="btn btn-nav-outline">Schedule</a>
-        <a href="mailto:mchsrobotics11285@gmail.com?subject=Hello%20MCHS%20Robotics&body=Hi%20MCHS%20Robotics%2C%0A%0AI%20wanted%20to%20reach%20out%20about..."
+        <a href="contact.html"
             target="_blank" class="btn btn-nav-outline">Contact Us</a>
     </div>
   </div>
@@ -311,8 +349,18 @@
 
 <!-- Hero Section -->
 <div class="container text-center py-5">
-    <h1 class="display-3 fw-bold">Patent Pending #11285</h1>
-    <p class="lead fs-4">MCHS Robotics team competing in FIRST® Tech Challenge</p>
+    <h1 class="display-3 fw-bold outlined-title">
+        <span class="school-brand">MCHS</span> Robotics Club
+    </h1>
+
+    <h2 class="fs-3 fw-bold mt-2">
+        Patent Pending #11285
+    </h2>
+
+    <p class="lead fs-4 mt-3">
+        A student-led robotics team at Mt. Carmel High School
+        competing in the FIRST® Tech Challenge.
+    </p>
 
     <div class="mt-4">
         <h4 class="fw-semibold">Interested in joining?</h4>
