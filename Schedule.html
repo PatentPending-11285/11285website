@@ -121,6 +121,11 @@
             padding-top: 50px;
             padding-bottom: 30px;
         }
+
+        .calendar-wrapper { position: relative; width: 100%; max-width: 100%; overflow: hidden; border-radius: 10px; margin-top: 15px; background-color: #ffffff; } /* Keeps the calendar contained inside its card */ 
+        .calendar-wrapper iframe { display: block; width: 100%; min-height: 600px; border: 0; } /* Smaller screens */ @media (max-width: 768px) { .calendar-wrapper iframe { min-height: 500px; } }
+
+        
     </style>
 </head>
 <body>
@@ -158,7 +163,7 @@
         <div class="col-md-8">
             <div class="card text-center p-4">
                 <h3 class="mb-3">2026-2027 Meet Dates</h3>
-                <p><strong>TBA</strong></p>
+                <div class="calendar-wrapper"> <!-- Paste your Google Calendar iframe embed code here --> <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FLos_Angeles&showPrint=0&src=OWE0MTBmN2U2YmY0YTdlNzg3NDBiNTg0ZTg3MmFlNzg1MDU1ODJmYTgyYTQyZGE4MTI5M2ZiYWVmZmU5ZDdiOEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23f4511e" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>" title="Patent Pending 2026-2027 Meet Calendar" frameborder="0" scrolling="no"> </iframe> </div>
             </div>
         </div>
     </div>
