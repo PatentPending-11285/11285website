@@ -1,220 +1,491 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Build Process - Patent Pending</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build Process - Mt. Carmel Robotics</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="static/logo.png">
+    body {
+      font-family: 'Roboto Condensed', 'Inter', -apple-system, sans-serif;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background-color: #121212;
+      overflow-x: hidden;
+    }
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    /* Header Styling */
+    header {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      color: #1a1a1a;
+      border-bottom: 4px solid #A30036;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
 
-    <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: url("static/team1.png") no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-        }
-                .btn {
-            font-family: 'Roboto Condensed', sans-serif;
-            letter-spacing: 0.5px;
-            transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
-        }
+    .main-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 5%;
+    }
 
-        .btn:hover {
-            transform: translateY(-2px) scale(1.03);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-        }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #1a1a1a;
+    }
 
-        .btn:active {
-            transform: scale(0.96);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-            transition: transform 0.08s ease;
-        }
+    .logo-icon {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+    }
 
-        .btn:focus-visible {
-            outline: 3px solid #FFC627;
-            outline-offset: 2px;
-        }
+    .logo-text {
+      font-weight: 800;
+      font-size: 26px;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      color: #A30036;
+    }
 
-        .btn-interest {
-            position: relative;
-            overflow: hidden;
-            transform: scale(1);
-            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
-                        box-shadow 0.2s ease;
-        }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+      align-items: center;
+    }
 
-        .btn-interest:hover {
-            transform: scale(1.06);
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
-        }
+    .nav-links li a {
+      text-decoration: none;
+      color: #1f1f1f;
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.2s ease;
+    }
 
-        .btn-interest:active {
-            transform: scale(0.94);
-        }
+    .nav-links li a:hover {
+      color: #A30036;
+    }
 
-        /* Nav buttons: white outline, transparent fill, compact sizing */
-        .btn-nav-outline {
-            background-color: transparent;
-            border: 1.5px solid #ffffff;
-            color: #ffffff;
-            padding: 0.35rem 0.85rem;
-            font-size: 0.9rem;
-            white-space: nowrap;
-        }
+    .nav-links li a.active {
+      color: #A30036;
+      border-bottom: 3px solid #FFC627;
+      padding-bottom: 2px;
+    }
 
-        .btn-nav-outline:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            color: #ffffff;
-        }
+    main {
+      flex: 1;
+      width: 100%;
+    }
 
-        .btn-home {
-            background-color: #FFC627;
-            border: 1.5px solid #ffffff;
-            color: #ffffff;
-            padding: 0.35rem 0.85rem;
-            font-size: 0.9rem;
-            white-space: nowrap;
-        }
+    /* Hero Wrapper - Matching Robots Page Layout & Alignment */
+    .hero-container {
+      position: relative;
+      width: 100%;
+      min-height: calc(100vh - 76px);
+      display: flex;
+      align-items: flex-start;
+      padding-top: 60px;
+    }
 
-        .btn-home:hover {
-            background-color: #e6b322;
-            border-color: #ffffff;
-            color: #ffffff;
-        }
+    .bg-slideshow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      overflow: hidden;
+    }
 
-        .overlay {
-            background-color: rgba(0, 0, 0, 0.7);
-            min-height: 100vh;
-        }
+    .bg-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
 
-        .asu-red {
-            background-color: #8C1D40;
-        }
+    .bg-slide.active {
+      opacity: 1;
+    }
 
-        h1, h3, p {
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
-        }
+    .bg-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        180deg, 
+        rgba(15, 15, 15, 0.40) 0%, 
+        rgba(15, 15, 15, 0.85) 75%, 
+        #121212 100%
+      );
+      z-index: -1;
+    }
 
-        .card {
-            font-family: 'Roboto Condensed', sans-serif;
-            background-color: rgba(0,0,0,0.75);
-            border-radius: 15px;
-            color: white;
-        }
+    /* Hero Section Content */
+    .hero {
+      width: 100%;
+      padding: 40px 5% 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-        .img-fluid {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
+    .hero-content {
+      max-width: 850px;
+    }
 
-        .container-title {
-            padding-top: 50px;
-            padding-bottom: 30px;
-        }
-    </style>
+    /* Standard Unstylized Title (Robots Page Style) */
+    .hero-title {
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+      color: #FFC627;
+      text-shadow: none;
+    }
+
+    .hero-description {
+      font-size: 20px;
+      line-height: 1.5;
+      font-weight: 500;
+      color: #ffffff;
+      margin-bottom: 28px;
+      text-shadow: none;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: #FFC627;
+      color: #A30036;
+      border: 2px solid #FFC627;
+    }
+
+    .btn-primary:hover {
+      background-color: #e6b020;
+      border-color: #e6b020;
+    }
+
+    .btn-secondary {
+      background-color: #A30036;
+      color: #ffffff;
+      border: 2px solid #A30036;
+    }
+
+    .btn-secondary:hover {
+      background-color: #82002b;
+      border-color: #82002b;
+    }
+
+    /* Process Sections */
+    .flat-content-wrapper {
+      background-color: #121212;
+      width: 100%;
+      padding-bottom: 60px;
+    }
+
+    .process-section {
+      width: 100%;
+      padding: 20px 5% 40px;
+    }
+
+    .process-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #1c1c1c;
+      border: 2px solid #A30036;
+      border-top: 6px solid #FFC627;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .process-title {
+      font-size: 36px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #FFC627;
+    }
+
+    .process-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .process-card {
+      background: #242424;
+      border: 1px solid #333333;
+      border-left: 5px solid #A30036;
+      border-radius: 8px;
+      padding: 28px;
+    }
+
+    .process-card h3 {
+      font-size: 24px;
+      color: #FFC627;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .process-card p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #d0d0d0;
+      margin-bottom: 12px;
+    }
+
+    .process-details {
+      list-style-type: disc;
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .process-details li {
+      font-size: 15px;
+      line-height: 1.5;
+      color: #e0e0e0;
+    }
+
+    .process-details li strong {
+      color: #FFC627;
+    }
+
+    footer {
+      background: #A30036;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      border-top: 3px solid #FFC627;
+    }
+
+    @media (max-width: 900px) {
+      .main-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .hero-title {
+        font-size: 38px;
+      }
+
+      .hero-description {
+        font-size: 17px;
+      }
+
+      .process-container {
+        padding: 24px;
+      }
+
+      .process-card h3 {
+        font-size: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div class="overlay">
+  <header>
+    <nav class="main-nav">
+      <a href="home.html" class="logo-container">
+        <img src="static/logo.png" alt="Logo" class="logo-icon" id="config-logo-img">
+        <span class="logo-text" id="config-company-name">Mt. Carmel Robotics</span>
+      </a>
 
-<!-- Navbar -->
-<nav class="navbar navbar-dark asu-red">
-  <div class="container justify-content-between align-items-center">
-    <a href="index.html" class="d-flex align-items-center text-decoration-none">
-      <img src="static/logo.png" alt="Patent Pending Logo" style="height:50px; margin-right:10px;">
-      <span class="navbar-brand mb-0 h1"><strong>Patent Pending #11285</strong></span>
-    </a>
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="robots.html">Our Robots</a></li>
+        <li><a href="awards.html">Award History</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <div class="d-flex nav-links gap-2">
-        <a href="index.html" class="btn btn-home">Home</a>
-        <a href="roster.html" class="btn btn-nav-outline">Team</a>
-        <a href="robots.html" class="btn btn-nav-outline">Our Robots</a>
-        <a href="awards.html" class="btn btn-nav-outline">Award History</a>
-        <a href="Schedule.html" class="btn btn-nav-outline">Schedule</a>
-        <a href="contact.html" class="btn btn-nav-outline">Contact Us</a>
-    </div>
-  </div>
-</nav>
+  <main>
+    <div class="hero-container">
+      <div class="bg-slideshow" id="slideshow"></div>
+      <div class="bg-overlay"></div>
 
-<!-- Title -->
-<div class="container text-center container-title">
-    <h1 class="display-4 fw-bold">Build Process</h1>
-    <p class="lead">Learn how Patent Pending Robotics designs, programs, and documents our robots.</p>
-</div>
-
-<div class="container mt-5 mb-5">
-
-    <!-- Design -->
-    <div class="row justify-content-center mb-4">
-        <div class="col-md-8">
-            <div class="card text-center p-4">
-                <h3 class="mb-3">Design</h3>
-                <p>
-                    Patent Pending designs its robots in Onshape much like others. Our team’s CADers utilize the FTC Parts Library created by FTC Team 2901, Purple Gears. 
-                    To gain access, email FIRST@ptc.com using your Onshape account email. Key components include a Limelight for AprilTag tracking, mecanum wheels for 
-                    omnidirectional movement, and custom 3D printed and sheet metal parts.
-                </p>
-            </div>
+      <section class="hero">
+        <div class="hero-content">
+          <h1 class="hero-title" id="config-title">Our Build Process</h1>
+          <p class="hero-description" id="config-description">
+            A comprehensive overview of our engineering design pipeline—spanning strategic game breakdown, parametric CAD assembly, functional prototyping, and autonomous control integration.
+          </p>
+          <div class="cta-group">
+            <a href="robots.html" class="btn btn-primary">View Current Robot</a>
+            <a href="contact.html" class="btn btn-secondary">Get In Touch</a>
+          </div>
         </div>
+      </section>
     </div>
 
-    <!-- Program -->
-    <div class="row justify-content-center mb-4">
-        <div class="col-md-8">
-            <div class="card text-center p-4">
-                <h3 class="mb-3">Program</h3>
-                <p>
-                    Our programmers develop both autonomous and driver-controlled systems. Autonomous (30 seconds) runs entirely on prewritten code using sensors. 
-                    Driver control (2 minutes) uses gamepads connected to phones that send instructions to the robot. The final 30 seconds (End Game) focuses on 
-                    bonus scoring objectives like parking.
-                </p>
+    <div class="flat-content-wrapper">
+      <section class="process-section">
+        <div class="process-container">
+          <h2 class="process-title">Engineering Pipeline</h2>
+          
+          <div class="process-list">
+            
+            <div class="process-card">
+              <h3><i class="fa-solid fa-brain"></i> 1. Kickoff & Game Strategy Breakdown</h3>
+              <p>Immediately following the FIRST Tech Challenge game reveal, our team conducts a thorough analysis of the manual rules and field geometry to establish our high-level strategic objectives.</p>
+              <ul class="process-details">
+                <li><strong>Point Optimization:</strong> Calculating theoretical point yields across autonomous, driver-controlled, and end-game periods to set target scoring rates.</li>
+                <li><strong>Drivetrain Architecture:</strong> Choosing optimal chassis geometry (e.g., custom Mecanum or compact Swerve) to balance speed, pushing force, and obstacle traversal.</li>
+                <li><strong>Subsystem Prioritization:</strong> Mapping out primary, secondary, and tertiary scoring mechanism requirements to guide mechanical design tradeoffs.</li>
+              </ul>
             </div>
-        </div>
-    </div>
 
-    <!-- Documentation -->
-    <div class="row justify-content-center mb-4">
-        <div class="col-md-8">
-            <div class="card text-center p-4">
-                <h3 class="mb-3">Documentation</h3>
-                <p>
-                    Documentation is a core part of FIRST. Our Engineering Notebook tracks the entire design process, decisions, and iterations. 
-                    This helps us compete for awards like the Think Award and ensures our work is structured and intentional.
-                </p>
+            <div class="process-card">
+              <h3><i class="fa-solid fa-compass-drafting"></i> 2. Parametric CAD & Mechanical Assembly</h3>
+              <p>Before physical cutting or assembly begins, the entire robot is modeled in 3D CAD using Onshape to verify clearances, balance weight distribution, and ensure compliance with size limits.</p>
+              <ul class="process-details">
+                <li><strong>Standardized Hardware:</strong> Integrating goBILDA and REV pattern structures with custom CNC routed aluminum and polycarb plates.</li>
+                <li><strong>Packaging & Constraints:</strong> Designing within the 18"x18"x18" starting sizing box while maximizing expansion capability during match play.</li>
+                <li><strong>Mass & Center of Gravity:</strong> Tracking center of mass dynamically to optimize high-speed acceleration and stability during quick directional changes.</li>
+              </ul>
             </div>
-        </div>
-    </div>
 
-    <!-- Outreach -->
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card text-center p-4">
-                <h3 class="mb-3">Outreach & Social Media</h3>
-                <p>
-                    We use Instagram and community outreach to grow robotics interest. Our team participates in competitions, helps other teams, 
-                    joins school events like club rush, and has participated in NIWC Pacific.
-                </p>
+            <div class="process-card">
+              <h3><i class="fa-solid fa-print"></i> 3. Rapid Prototyping & Iterative Testing</h3>
+              <p>We leverage additive manufacturing and fast mockups to validate mechanism geometry and intake dynamics early in the build cycle before committing to final metal fabrication.</p>
+              <ul class="process-details">
+                <li><strong>3D Printing (PLA & TPU):</strong> Printing active intake rollers, flexible compliant wheels, custom gearboxes, and sensor mounts for rapid bench testing.</li>
+                <li><strong>Physical Proof-of-Concept:</strong> Building cardboard and wooden test rigs to evaluate compression, grip friction, and feeding angles for game pieces.</li>
+                <li><strong>Failure Analysis:</strong> Documenting failure modes during strain testing to revise wall thicknesses and structural gussets.</li>
+              </ul>
             </div>
+
+            <div class="process-card">
+              <h3><i class="fa-solid fa-code"></i> 4. Control Systems, Vision Processing & Tuning</h3>
+              <p>Our software suite focuses on precise motion profiling, computer vision targeting, and automated driver-assist features to maximize match consistency.</p>
+              <ul class="process-details">
+                <li><strong>RoadRunner Motion Profiling:</strong> Implementing spline trajectories with deadwheel odometry for repeatable autonomous navigation.</li>
+                <li><strong>Vision Systems:</strong> Utilizing AprilTag identification via Limelight and OpenCV for real-time localization and automated target tracking.</li>
+                <li><strong>Control Loops:</strong> Tuning PID controller loops and feedforward mechanisms for precise arm positioning, slide extension, and velocity regulation.</li>
+              </ul>
+            </div>
+
+          </div>
         </div>
+      </section>
     </div>
+  </main>
 
-</div>
+  <footer>
+    <p>© 2026 Patent Pending</p>
+  </footer>
 
-<!-- Footer -->
-<footer class="asu-red text-white text-center p-3">
-    © 2026 Patent Pending
-</footer>
+  <script>
+    const CONFIG = {
+      companyName: "Mt. Carmel Robotics",
+      logoImagePath: "static/logo.png",
+      heroTitle: "Our Build Process",
+      heroDescription: "A comprehensive overview of our engineering design pipeline—spanning strategic game breakdown, parametric CAD assembly, functional prototyping, and autonomous control integration.",
+      
+      images: [
+        "static/team1.png",
+        "static/team2.jpg",
+        "static/team3.png",
+        "static/team4.png"
+      ],
+      
+      cycleInterval: 5000
+    };
 
-</div>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("config-company-name").textContent = CONFIG.companyName;
+      document.getElementById("config-title").textContent = CONFIG.heroTitle;
+      document.getElementById("config-description").textContent = CONFIG.heroDescription;
+      document.getElementById("config-logo-img").src = CONFIG.logoImagePath;
 
+      const slideshowContainer = document.getElementById("slideshow");
+      CONFIG.images.forEach((imgSrc, index) => {
+        const slide = document.createElement("div");
+        slide.className = `bg-slide ${index === 0 ? "active" : ""}`;
+        slide.style.backgroundImage = `url('${imgSrc}')`;
+        slideshowContainer.appendChild(slide);
+      });
+
+      const slides = document.querySelectorAll(".bg-slide");
+      let currentIndex = 0;
+
+      if (slides.length > 1) {
+        setInterval(() => {
+          slides[currentIndex].classList.remove("active");
+          currentIndex = (currentIndex + 1) % slides.length;
+          slides[currentIndex].classList.add("active");
+        }, CONFIG.cycleInterval);
+      }
+    });
+  </script>
 </body>
 </html>
