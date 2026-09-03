@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mt. Carmel Robotics</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,700;0,800;0,900;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto Condensed', 'Inter', -apple-system, sans-serif;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background-color: #121212;
+      overflow-x: hidden;
+    }
+
+    /* Hero Container */
+    .hero-container {
+      position: relative;
+      width: 100%;
+      min-height: calc(100vh - 76px);
+      display: flex;
+      align-items: center;
+    }
+
+    /* Background Slideshow */
+    .bg-slideshow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      overflow: hidden;
+    }
+
+    .bg-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+
+    .bg-slide.active {
+      opacity: 1;
+    }
+
+    /* Gradient Overlay */
+    .bg-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        180deg, 
+        rgba(15, 15, 15, 0.45) 0%, 
+        rgba(15, 15, 15, 0.80) 70%, 
+        #121212 100%
+      );
+      z-index: -1;
+    }
+
+    /* Header Styling */
+    header {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      color: #1a1a1a;
+      border-bottom: 4px solid #A30036;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .main-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 5%;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #1a1a1a;
+    }
+
+    .logo-icon {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .logo-text {
+      font-weight: 800;
+      font-size: 26px;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      color: #A30036;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #1f1f1f;
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links li a:hover {
+      color: #A30036;
+    }
+
+    .nav-links li a.active {
+      color: #A30036;
+      border-bottom: 3px solid #FFC627;
+      padding-bottom: 2px;
+    }
+
+    main {
+      flex: 1;
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      width: 100%;
+      padding: 80px 5% 80px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .hero-content {
+      max-width: 1050px;
+    }
+
+    /* MCHS Sundevil Athletic Stylized Hero Title with Red Outline */
+    .hero-title {
+      font-size: 80px;
+      font-weight: 900;
+      font-style: italic;
+      line-height: 0.98;
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #FFC627;
+      -webkit-text-stroke: 6px #A30036;
+      text-stroke: 6px #A30036;
+      paint-order: stroke fill;
+      text-shadow: none;
+      filter: none;
+      -webkit-background-clip: initial;
+      -webkit-text-fill-color: #FFC627;
+    }
+
+    .hero-description {
+      font-size: 22px;
+      line-height: 1.5;
+      font-weight: 500;
+      color: #f0f0f0;
+      margin-bottom: 32px;
+      max-width: 850px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      font-size: 17px;
+      font-weight: 700;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: #FFC627;
+      color: #A30036;
+      border: 2px solid #FFC627;
+    }
+
+    .btn-primary:hover {
+      background-color: #e6b020;
+      border-color: #e6b020;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: #A30036;
+      color: #ffffff;
+      border: 2px solid #A30036;
+    }
+
+    .btn-secondary:hover {
+      background-color: #82002b;
+      border-color: #82002b;
+      transform: translateY(-2px);
+    }
+
+    .flat-content-wrapper {
+      background-color: #121212;
+      width: 100%;
+    }
+
+    .stats-section {
+      width: 100%;
+      padding: 40px 5% 60px;
+    }
+
+    .stats-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #1c1c1c;
+      border: 2px solid #A30036;
+      border-top: 6px solid #FFC627;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .stats-title {
+      font-size: 36px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 25px;
+      color: #FFC627;
+    }
+
+    .stats-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 35px;
+    }
+
+    .stats-list li {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #f0f0f0;
+      position: relative;
+      padding-left: 24px;
+    }
+
+    .stats-list li::before {
+      content: "•";
+      color: #FFC627;
+      font-size: 24px;
+      position: absolute;
+      left: 0;
+      top: -2px;
+    }
+
+    .stats-list strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .resource-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: 25px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-outline {
+      background: rgba(163, 0, 54, 0.2);
+      border: 1px solid #FFC627;
+      color: #ffffff;
+      padding: 10px 18px;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 6px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: #A30036;
+      color: #FFC627;
+      border-color: #A30036;
+    }
+
+    .sponsors-section {
+      width: 100%;
+      padding: 40px 5% 80px;
+      background-color: #121212;
+    }
+
+    .sponsors-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .sponsors-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #FFC627;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 30px;
+    }
+
+    .sponsors-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      background: #ffffff;
+      padding: 30px 20px;
+      border-radius: 8px;
+      border-bottom: 4px solid #FFC627;
+    }
+
+    .sponsor-item {
+      font-size: 24px;
+      font-weight: 800;
+      color: #555555;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      filter: grayscale(100%);
+      opacity: 0.8;
+      transition: all 0.3s ease;
+    }
+
+    .sponsor-item:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+      color: #111111;
+    }
+
+    .sponsor-item i {
+      font-size: 28px;
+    }
+
+    .sponsor-item.surface-optics i {
+      color: #A30036;
+    }
+
+    footer {
+      background: #A30036;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      border-top: 3px solid #FFC627;
+    }
+
+    /* Announcement Modal Styling */
+    .announcement-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(5px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .announcement-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .announcement-card {
+      background: #1c1c1c;
+      border: 2px solid #A30036;
+      border-top: 6px solid #FFC627;
+      border-radius: 12px;
+      max-width: 550px;
+      width: 100%;
+      padding: 32px;
+      position: relative;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+
+    .announcement-overlay.active .announcement-card {
+      transform: translateY(0);
+    }
+
+    .announcement-close {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      background: none;
+      border: none;
+      color: #a0a0a0;
+      font-size: 22px;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .announcement-close:hover {
+      color: #FFC627;
+    }
+
+    .announcement-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(163, 0, 54, 0.3);
+      border: 1px solid #A30036;
+      color: #FFC627;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .announcement-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .announcement-body {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #d0d0d0;
+      margin-bottom: 24px;
+    }
+
+    .announcement-body strong {
+      color: #FFC627;
+    }
+
+    @media (max-width: 900px) {
+      .main-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .hero-title {
+        font-size: 46px;
+        -webkit-text-stroke: 2px #A30036;
+        text-stroke: 2px #A30036;
+      }
+
+      .hero-description {
+        font-size: 18px;
+      }
+
+      .stats-container {
+        padding: 24px;
+      }
+
+      .stats-list li {
+        font-size: 16px;
+      }
+
+      .sponsors-grid {
+        gap: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="announcement-overlay" id="announcement-modal">
+    <div class="announcement-card">
+      <button class="announcement-close" id="close-announcement" aria-label="Close modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="announcement-badge">
+        <i class="fa-solid fa-bullhorn"></i> Announcement
+      </div>
+      <h3 class="announcement-title" id="announcement-title">2026–2027 Team Recruitment Open!</h3>
+      <p class="announcement-body" id="announcement-body">
+        Registration for the upcoming FIRST Tech Challenge BIOBUZZ season is officially live. Whether you're interested in mechanical CAD, software engineering, or outreach management, we want you on our drive team!
+      </p>
+      <div class="cta-group">
+        <a href="#" id="modal-reg-btn" class="btn btn-primary" target="_blank">Fill Registration Form</a>
+        <button class="btn btn-secondary" id="dismiss-announcement-btn">Got It</button>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <nav class="main-nav">
+      <a href="home.html" class="logo-container">
+        <img src="static/logo.png" alt="Logo" class="logo-icon" id="config-logo-img">
+        <span class="logo-text" id="config-company-name">Mt. Carmel Robotics</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="home.html" class="active">Home</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="robots.html">Our Robots</a></li>
+        <li><a href="awards.html">Award History</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero-container">
+      <div class="bg-slideshow" id="slideshow"></div>
+      <div class="bg-overlay"></div>
+
+      <section class="hero">
+        <div class="hero-content">
+          <h1 class="hero-title" id="config-title">Team Patent Pending 11285</h1>
+          <p class="hero-description" id="config-description">
+            Welcome to Mt. Carmel Robotics, FTC Team 11285. We design, build, and program competitive robots while developing high school leadership and technical engineering skills.
+          </p>
+          <div class="cta-group">
+            <a href="#" id="config-reg-btn" class="btn btn-primary" target="_blank">Registration Form</a>
+            <a href="robots.html" class="btn btn-secondary">View Our Robots</a>
+            <a href="team.html" class="btn btn-secondary">View Our Roster</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="flat-content-wrapper">
+      <section class="stats-section">
+        <div class="stats-container">
+          <h2 class="stats-title">Club Stats</h2>
+          
+          <ul class="stats-list">
+            <li>We established in <strong>2016</strong>.</li>
+            <li>We currently have <strong>11 students</strong> apart of the team: <strong>1 seniors</strong>, <strong>2 juniors</strong>, <strong>7 sophomores</strong>, and <strong>1 freshmen</strong>.</li>
+            <li>Our seniors plan to major in: <strong>Aerospace Engineering</strong>, <strong>Mechanical Engineering</strong>, and <strong>Computer Science</strong>.</li>
+            <li>We have competed in <strong>10 FTC games</strong>, and in <strong>2 Northrop Grumman High School Innovation Challenges</strong>.</li>
+          </ul>
+
+          <div class="resource-links" id="resource-links-container"></div>
+        </div>
+      </section>
+
+      <section class="sponsors-section">
+        <div class="sponsors-container">
+          <h3 class="sponsors-title">Our Sponsors & Community Partners</h3>
+          <div class="sponsors-grid">
+            <div class="sponsor-item surface-optics">
+              <i class="fa-solid fa-bullseye"></i> SURFACE OPTICS
+            </div>
+            <div class="sponsor-item"><i class="fa-solid fa-gear"></i> REV ROBOTICS</div>
+            <div class="sponsor-item"><i class="fa-solid fa-cube"></i> GOBILDA</div>
+            <div class="sponsor-item"><i class="fa-solid fa-graduation-cap"></i> MCHS PUSDT</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Patent Pending</p>
+  </footer>
+
+  <script>
+    const CONFIG = {
+      companyName: "Mt. Carmel Robotics",
+      logoImagePath: "static/logo.png",
+      heroTitle: "Team Patent Pending 11285",
+      heroDescription: "Welcome to Mt. Carmel Robotics, FTC Team 11285. We design, build, and program competitive robots while developing high school leadership and technical engineering skills.",
+      registrationUrl: "https://forms.gle/mnUkw5eHBJzsVFT3A",
+
+      announcement: {
+        show: true,
+        title: "2026–2027 Team Recruitment Open!",
+        message: "Registration for the upcoming FIRST Tech Challenge season is officially live. Whether you're interested in mechanical CAD, software engineering, or outreach management, we want you on the team!"
+      },
+
+      resources: [
+        { name: "Instagram", url: "https://instagram.com/sundevilrobotics", icon: "fa-brands fa-instagram" },
+        { name: "Contact", url: "mailto:mchsrobotics11285@gmail.com", icon: "fa-solid fa-envelope" },
+        { name: "Build Process", url: "build-process.html", icon: "fa-solid fa-wrench" },
+        { name: "Resources", url: "https://docs.google.com/document/d/1qpJK78hx46gXMAuELi-B5CiS-kj7noiGX81hP2BeBUU/edit?usp=sharing", icon: "fa-solid fa-folder-open" },
+        { name: "FIRST TECH CHALLENGE ®", url: "https://www.firstinspires.org/robotics/ftc", icon: "fa-solid fa-robot" }
+      ],
+      
+      images: [
+        "static/team1.png",
+        "static/team2.jpg",
+        "static/team3.png",
+        "static/team4.png"
+      ],
+      
+      cycleInterval: 5000
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("config-company-name").textContent = CONFIG.companyName;
+      document.getElementById("config-title").textContent = CONFIG.heroTitle;
+      document.getElementById("config-description").textContent = CONFIG.heroDescription;
+      document.getElementById("config-logo-img").src = CONFIG.logoImagePath;
+      
+      const regBtn = document.getElementById("config-reg-btn");
+      const modalRegBtn = document.getElementById("modal-reg-btn");
+      if (CONFIG.registrationUrl) {
+        if (regBtn) regBtn.href = CONFIG.registrationUrl;
+        if (modalRegBtn) modalRegBtn.href = CONFIG.registrationUrl;
+      }
+
+      // Announcement Modal Setup
+      const modal = document.getElementById("announcement-modal");
+      const closeX = document.getElementById("close-announcement");
+      const dismissBtn = document.getElementById("dismiss-announcement-btn");
+
+      if (CONFIG.announcement && CONFIG.announcement.show) {
+        document.getElementById("announcement-title").textContent = CONFIG.announcement.title;
+        document.getElementById("announcement-body").textContent = CONFIG.announcement.message;
+        
+        // Brief delay before launching modal for smooth fade-in
+        setTimeout(() => {
+          modal.classList.add("active");
+        }, 400);
+      }
+
+      const closeModal = () => modal.classList.remove("active");
+      if (closeX) closeX.addEventListener("click", closeModal);
+      if (dismissBtn) dismissBtn.addEventListener("click", closeModal);
+      if (modal) {
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) closeModal();
+        });
+      }
+
+      const resourceContainer = document.getElementById("resource-links-container");
+      if (resourceContainer) {
+        CONFIG.resources.forEach(res => {
+          const link = document.createElement("a");
+          link.className = "btn-outline";
+          link.href = res.url;
+          if (res.url.startsWith("http")) {
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+          }
+          link.innerHTML = `<i class="${res.icon}"></i> ${res.name}`;
+          resourceContainer.appendChild(link);
+        });
+      }
+
+      const slideshowContainer = document.getElementById("slideshow");
+      CONFIG.images.forEach((imgSrc, index) => {
+        const slide = document.createElement("div");
+        slide.className = `bg-slide ${index === 0 ? "active" : ""}`;
+        slide.style.backgroundImage = `url('${imgSrc}')`;
+        slideshowContainer.appendChild(slide);
+      });
+
+      const slides = document.querySelectorAll(".bg-slide");
+      let currentIndex = 0;
+
+      if (slides.length > 1) {
+        setInterval(() => {
+          slides[currentIndex].classList.remove("active");
+          currentIndex = (currentIndex + 1) % slides.length;
+          slides[currentIndex].classList.add("active");
+        }, CONFIG.cycleInterval);
+      }
+    });
+  </script>
+</body>
+</html>
