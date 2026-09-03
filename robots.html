@@ -1,246 +1,673 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Robots - Patent Pending</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Robots - Mt. Carmel Robotics</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      /* ADJUST THIS VALUE TO CONTROL DISTANCE BETWEEN TITLE/HERO AND DROPDOWNS */
+      --hero-bottom-gap: 50px; 
+    }
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="static/logo.png">
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    body {
+      font-family: 'Roboto Condensed', 'Inter', -apple-system, sans-serif;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background-color: #121212;
+      overflow-x: hidden;
+    }
 
-    <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: url("static/team1.png") no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-        }
+    /* Header Styling */
+    header {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      color: #1a1a1a;
+      border-bottom: 4px solid #A30036;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
 
-                .btn {
-            font-family: 'Roboto Condensed', sans-serif;
-            letter-spacing: 0.5px;
-            transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
-        }
+    .main-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 5%;
+    }
 
-        .btn:hover {
-            transform: translateY(-2px) scale(1.03);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-        }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #1a1a1a;
+    }
 
-        .btn:active {
-            transform: scale(0.96);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-            transition: transform 0.08s ease;
-        }
+    .logo-icon {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+    }
 
-        .btn:focus-visible {
-            outline: 3px solid #FFC627;
-            outline-offset: 2px;
-        }
+    .logo-text {
+      font-weight: 800;
+      font-size: 26px;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      color: #A30036;
+    }
 
-        .btn-interest {
-            position: relative;
-            overflow: hidden;
-            transform: scale(1);
-            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
-                        box-shadow 0.2s ease;
-        }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+      align-items: center;
+    }
 
-        .btn-interest:hover {
-            transform: scale(1.06);
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
-        }
+    .nav-links li a {
+      text-decoration: none;
+      color: #1f1f1f;
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.2s ease;
+    }
 
-        .btn-interest:active {
-            transform: scale(0.94);
-        }
+    .nav-links li a:hover {
+      color: #A30036;
+    }
 
-        /* Nav buttons: white outline, transparent fill, compact sizing */
-        .btn-nav-outline {
-            background-color: transparent;
-            border: 1.5px solid #ffffff;
-            color: #ffffff;
-            padding: 0.35rem 0.85rem;
-            font-size: 0.9rem;
-            white-space: nowrap;
-        }
+    .nav-links li a.active {
+      color: #A30036;
+      border-bottom: 3px solid #FFC627;
+      padding-bottom: 2px;
+    }
 
-        .btn-nav-outline:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            color: #ffffff;
-        }
+    main {
+      flex: 1;
+      width: 100%;
+    }
 
-        .btn-home {
-            background-color: #FFC627;
-            border: 1.5px solid #ffffff;
-            color: #ffffff;
-            padding: 0.35rem 0.85rem;
-            font-size: 0.9rem;
-            white-space: nowrap;
-        }
+    /* Hero Wrapper */
+    .hero-container {
+      position: relative;
+      width: 100%;
+      min-height: auto; /* Changed from min-height: calc(100vh - 76px) to allow content to collapse closer */
+      display: flex;
+      align-items: flex-start;
+      padding-top: 40px; /* Reduced top padding */
+    }
 
-        .btn-home:hover {
-            background-color: #e6b322;
-            border-color: #ffffff;
-            color: #ffffff;
-        }
+    .bg-slideshow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      overflow: hidden;
+    }
 
-        .overlay {
-            background-color: rgba(0, 0, 0, 0.7);
-            min-height: 100vh;
-        }
+    .bg-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
 
-        .asu-red {
-            background-color: #8C1D40;
-        }
+    .bg-slide.active {
+      opacity: 1;
+    }
 
-        h1, h4, p {
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
-        }
+    .bg-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        180deg, 
+        rgba(15, 15, 15, 0.40) 0%, 
+        rgba(15, 15, 15, 0.85) 75%, 
+        #121212 100%
+      );
+      z-index: -1;
+    }
 
-        .card {
-            font-family: 'Roboto Condensed', sans-serif;
-            background-color: rgba(0,0,0,0.75);
-            border-radius: 15px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            color: white;
-        }
+    /* Hero Section Content */
+    .hero {
+      width: 100%;
+      padding: 20px 5% var(--hero-bottom-gap); /* Bottom padding controlled by CSS variable */
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
+    .hero-content {
+      max-width: 850px;
+    }
 
-        .robot-img {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 15px;
-            margin: 0 auto 15px auto;
-            border: 3px solid #8C1D40;
-            display: block;
-        }
+    .hero-title {
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+      color: #FFC627;
+      text-shadow: none;
+    }
 
-        .container-title {
-            padding-top: 50px;
-            padding-bottom: 30px;
-        }
-    </style>
+    .hero-description {
+      font-size: 20px;
+      line-height: 1.5;
+      font-weight: 500;
+      color: #ffffff;
+      margin-bottom: 28px;
+      text-shadow: none;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: #FFC627;
+      color: #A30036;
+      border: 2px solid #FFC627;
+    }
+
+    .btn-primary:hover {
+      background-color: #e6b020;
+      border-color: #e6b020;
+    }
+
+    .btn-secondary {
+      background-color: #A30036;
+      color: #ffffff;
+      border: 2px solid #A30036;
+    }
+
+    .btn-secondary:hover {
+      background-color: #82002b;
+      border-color: #82002b;
+    }
+
+    /* Content Wrapper & Collapsible Seasons */
+    .flat-content-wrapper {
+      background-color: #121212;
+      width: 100%;
+      padding-bottom: 60px;
+    }
+
+    .robots-section {
+      width: 100%;
+      padding: 0 5% 40px; /* Removed top padding to sit flush against hero gap */
+    }
+
+    .robots-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Accordion / Collapsible Styling */
+    .season-accordion {
+      background: #1c1c1c;
+      border: 2px solid #A30036;
+      border-top: 6px solid #FFC627;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .season-header {
+      width: 100%;
+      background: #1c1c1c;
+      padding: 20px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: none;
+      color: #FFC627;
+      font-size: 26px;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+      text-align: left;
+      transition: background-color 0.2s ease;
+    }
+
+    .season-header:hover {
+      background: #242424;
+    }
+
+    .season-header .toggle-icon {
+      font-size: 20px;
+      color: #FFC627;
+      transition: transform 0.3s ease;
+    }
+
+    .season-accordion.active .toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    .season-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+      background: #141414;
+    }
+
+    .season-accordion.active .season-content {
+      max-height: 4500px;
+      transition: max-height 0.5s ease-in-out;
+      padding: 28px;
+    }
+
+    .robot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    /* Robot Card Styling */
+    .robot-card {
+      background: #242424;
+      border: 1px solid #333333;
+      border-left: 5px solid #A30036;
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .robot-img-container {
+      width: 100%;
+      height: 200px;
+      background: #181818;
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #333;
+    }
+
+    .robot-img-container img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .robot-card h3 {
+      font-size: 22px;
+      color: #FFC627;
+      margin-bottom: 2px;
+    }
+
+    .robot-meta {
+      font-size: 13px;
+      color: #a0a0a0;
+      margin-bottom: 8px;
+    }
+
+    .robot-card p {
+      font-size: 15px;
+      line-height: 1.5;
+      color: #d0d0d0;
+      margin-bottom: 10px;
+    }
+
+    .robot-specs {
+      list-style-type: disc;
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .robot-specs li {
+      font-size: 14px;
+      line-height: 1.4;
+      color: #e0e0e0;
+    }
+
+    .robot-specs li strong {
+      color: #FFC627;
+    }
+
+    footer {
+      background: #A30036;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      border-top: 3px solid #FFC627;
+    }
+
+    @media (max-width: 900px) {
+      .main-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .hero-title {
+        font-size: 38px;
+      }
+
+      .hero-description {
+        font-size: 17px;
+      }
+
+      .season-header {
+        font-size: 20px;
+        padding: 16px 20px;
+      }
+
+      .season-accordion.active .season-content {
+        padding: 16px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div class="overlay">
+  <header>
+    <nav class="main-nav">
+      <a href="home.html" class="logo-container">
+        <img src="static/logo.png" alt="Logo" class="logo-icon" id="config-logo-img">
+        <span class="logo-text" id="config-company-name">Mt. Carmel Robotics</span>
+      </a>
 
-<nav class="navbar navbar-dark asu-red">
-  <div class="container justify-content-between align-items-center">
-    <a href="index.html" class="d-flex align-items-center text-decoration-none">
-      <img src="static/logo.png" alt="Patent Pending Logo" style="height:50px; margin-right:10px;">
-      <span class="navbar-brand mb-0 h1"><strong>Patent Pending #11285</strong></span>
-    </a>
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="robots.html" class="active">Our Robots</a></li>
+        <li><a href="awards.html">Award History</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <div class="d-flex nav-links gap-2">
-        <a href="index.html" class="btn btn-home">Home</a>
-        <a href="roster.html" class="btn btn-nav-outline">Team</a>
-        <a href="robots.html" class="btn btn-nav-outline">Our Robots</a>
-        <a href="awards.html" class="btn btn-nav-outline">Award History</a>
-        <a href="Schedule.html" class="btn btn-nav-outline">Schedule</a>
-        <a href="contact.html" class="btn btn-nav-outline">Contact Us</a>
+  <main>
+    <div class="hero-container">
+      <div class="bg-slideshow" id="slideshow"></div>
+      <div class="bg-overlay"></div>
+
+      <section class="hero">
+        <div class="hero-content">
+          <h1 class="hero-title" id="config-title">Our Robots</h1>
+          <p class="hero-description" id="config-description">
+            Explore our CAD mechanical models and physical robot iterations designed and engineered across various FIRST Tech Challenge seasons.
+          </p>
+          <div class="cta-group">
+            <a href="build-process.html" class="btn btn-primary">View Build Process</a>
+            <a href="contact.html" class="btn btn-secondary">Get In Touch</a>
+          </div>
+        </div>
+      </section>
     </div>
-  </div>
-</nav>
 
-<!-- Page Title -->
-<div class="container text-center container-title">
-    <h1 class="display-4 fw-bold">Our Robots</h1>
-    <p class="lead">Robots built and designed by Patent Pending Robotics's CAD and Design team.</p>
-</div>
+    <div class="flat-content-wrapper">
+      <section class="robots-section">
+        <div class="robots-container">
 
-<!-- Robots Grid -->
-<div class="container pb-5">
-    <div class="row g-4">
-        <div class="col-md-4 col-sm-6">
-            <div class="card text-center p-4">
-                <img src="static/centerstageRobot1.png" alt="Centerstage V1" class="robot-img">
-                <h4>Centerstage V1 (2025-2026)</h4>
-                <div class="role-label"><strong>Designed by Sohm Shah (2021-2025).</strong></div>
-                <p>Description Unavailable</p>
+          <div class="season-accordion active">
+            <button class="season-header" onclick="toggleSeason(this)">
+              <span><i class="fa-solid fa-code"></i> 2025–2026: DECODE</span>
+              <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </button>
+            <div class="season-content">
+              <div class="robot-grid">
+
+                <div class="robot-card">
+                  <div class="robot-img-container">
+                    <img src="static/decodeRobot1.png" alt="DECODE V1">
+                  </div>
+                  <h3>DECODE V1</h3>
+                  <div class="robot-meta">Designed by Brandan Grundy (2025)</div>
+                  <p>Initial prototype chassis designed to test drive clearances, intake concepts, and basic autonomous routing.</p>
+                  <ul class="robot-specs">
+                    <li><strong>Drivetrain:</strong> Standard Mecanum drive setup</li>
+                    <li><strong>Vision:</strong> OpenCV AprilTag tracking</li>
+                    <li><strong>Focus:</strong> Core mechanics verification & chassis layout</li>
+                  </ul>
+                </div>
+
+                <div class="robot-card">
+                  <div class="robot-img-container">
+                    <img src="static/decodeRobot2.png" alt="DECODE V2">
+                  </div>
+                  <h3>DECODE V2</h3>
+                  <div class="robot-meta">Designed by Sohm Shah (2026)</div>
+                  <p>Competitive iteration featuring structural plates, but was unable to be used due to time constraints.</p>
+                  <ul class="robot-specs">
+                    <li><strong>Drivetrain:</strong> High-speed compact Mecanum drive</li>
+                    <li><strong>Vision:</strong> Limelight 3G localization & AprilTag pipeline</li>
+                    <li><strong>Focus:</strong> Fast cycle automation & telemetry integration</li>
+                  </ul>
+                </div>
+
+              </div>
             </div>
-        </div>
+          </div>
 
-        <div class="col-md-4 col-sm-6">
-            <div class="card text-center p-4">
-                <img src="static/intodeepRobot1.png" alt="Into The Deep Robot V1" class="robot-img">
-                <h4>Into The Deep V1 (2025-2026)</h4>
-                <div class="role-label"><strong>Designed by Sohm Shah (2021-2025).</strong></div>
-                <p>Description Unavailable</p>
+          <div class="season-accordion">
+            <button class="season-header" onclick="toggleSeason(this)">
+              <span><i class="fa-solid fa-water"></i> 2024–2025: Into The Deep</span>
+              <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </button>
+            <div class="season-content">
+              <div class="robot-grid">
+
+                <div class="robot-card">
+                  <div class="robot-img-container">
+                    <img src="static/intodeepRobot1.png" alt="Into The Deep V1">
+                  </div>
+                  <h3>Into The Deep V1</h3>
+                  <div class="robot-meta">Designed by Sohm Shah (2024)</div>
+                  <p>Initial proof-of-concept chassis configured for baseline game piece pickup and autonomous deadwheel routing.</p>
+                  <ul class="robot-specs">
+                    <li><strong>Drivetrain:</strong> goBILDA Strafer Chassis (Mecanum)</li>
+                    <li><strong>Intake:</strong> Active TPU compliant wheel roller</li>
+                    <li><strong>Vision:</strong> OpenCV target tracking</li>
+                  </ul>
+                </div>
+
+                <div class="robot-card">
+                  <div class="robot-img-container">
+                    <img src="static/intodeepRobot2.png" alt="Into The Deep V2">
+                  </div>
+                  <h3>Into The Deep V2</h3>
+                  <div class="robot-meta">Designed by Sohm Shah (2024)</div>
+                  <p>Chassis revision integrating custom mounting brackets and initial multi-stage linear slide extension geometry.</p>
+                  <ul class="robot-specs">
+                    <li><strong>Structure:</strong> Custom laser-cut aluminum plates</li>
+                    <li><strong>Lift:</strong> Multi-stage custom linear slides</li>
+                    <li><strong>Focus:</strong> High basket reaching stability</li>
+                  </ul>
+                </div>
+
+                <div class="robot-card">
+                  <div class="robot-img-container">
+                    <img src="static/intodeepRobot2.5.png" alt="Into The Deep V2.5">
+                  </div>
+                  <h3>Into The Deep V2.5</h3>
+                  <div class="robot-meta">Designed by Sohm Shah (2024–2025)</div>
+                  <p>Mid-season optimization focusing on mass reduction, wire routing management, and intake compliance.</p>
+                  <ul class="robot-specs">
+                    <li><strong>Weight:</strong> Strategic pocketing for structural efficiency</li>
+                    <li><strong>Sensors:</strong> High-frequency optical distance sensors</li>
+                    <li><strong>Focus:</strong> Reliability and autonomous path repeatability</li>
+                  </ul>
+                </div>
+
+                <div class="robot-card">
+                  <div class="robot-img-container">
+                    <img src="static/intodeepRobot3.png" alt="Into The Deep V3">
+                  </div>
+                  <h3>Into The Deep V3</h3>
+                  <div class="robot-meta">Designed by Sohm Shah (2025)</div>
+                  <p>League tournament build featuring CNC polycarbonate plates, reduced overall weight, and high-speed linear slides.</p>
+                  <ul class="robot-specs">
+                    <li><strong>Chassis:</strong> Low-profile Mecanum drive</li>
+                    <li><strong>Control:</strong> RoadRunner spline trajectory profiling</li>
+                    <li><strong>Focus:</strong> Maximum cycle speed & alliance synergy</li>
+                  </ul>
+                </div>
+
+                <div class="robot-card">
+                  <div class="robot-img-container">
+                    <img src="static/intodeepRobot4.png" alt="Into The Deep V4">
+                  </div>
+                  <h3>Into The Deep V4</h3>
+                  <div class="robot-meta">Designed by Sohm Shah (2025)</div>
+                  <p>Final championship revision with active dual-servo pitch & roll wrist claw end-effector and 3-wheel pinpoint deadwheel odometry.</p>
+                  <ul class="robot-specs">
+                    <li><strong>End-Effector:</strong> Precision pitch & roll wrist claw</li>
+                    <li><strong>Odometry:</strong> 3-wheel pinpoint tracking module</li>
+                    <li><strong>Weight:</strong> Optimized structure down to 28 lbs</li>
+                  </ul>
+                </div>
+
+              </div>
             </div>
-        </div>
+          </div>
 
-        <div class="col-md-4 col-sm-6">
-            <div class="card text-center p-4">
-                <img src="static/intodeepRobot2.png" alt="Into The Deep Robot V2" class="robot-img">
-                <h4>Into The Deep V2 (2025-2026)</h4>
-                <div class="role-label"><strong>Designed by Sohm Shah (2021-2025).</strong></div>
-                <p>Description Unavailable</p>
+          <div class="season-accordion">
+            <button class="season-header" onclick="toggleSeason(this)">
+              <span><i class="fa-solid fa-cubes"></i> 2023–2024: CENTERSTAGE</span>
+              <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </button>
+            <div class="season-content">
+              <div class="robot-grid">
+
+                <div class="robot-card">
+                  <div class="robot-img-container">
+                    <img src="static/centerstageRobot1.png" alt="CENTERSTAGE V1">
+                  </div>
+                  <h3>CENTERSTAGE V1</h3>
+                  <div class="robot-meta">Designed by Team Patent Pending 11285 (2023–2024)</div>
+                  <p>Designed for rapid pixel intake from human player stations and automated backdrop alignment during teleop and autonomous periods.</p>
+                  <ul class="robot-specs">
+                    <li><strong>Drivetrain:</strong> 4-motor Mecanum drive</li>
+                    <li><strong>Scoring:</strong> Servo-driven active pixel bucket</li>
+                    <li><strong>Endgame:</strong> Drone launcher and tape suspension climb</li>
+                  </ul>
+                </div>
+
+              </div>
             </div>
+          </div>
+
         </div>
-
-        <div class="col-md-4 col-sm-6">
-            <div class="card text-center p-4">
-                <img src="static/intodeepRobot2.5.png" alt="Into The Deep Robot V2.5" class="robot-img">
-                <h4>Into The Deep V2.5 (2025-2026)</h4>
-                <div class="role-label"><strong>Designed by Sohm Shah (2021-2025).</strong></div>
-                <p>Description Unavailable</p>
-            </div>
-        </div>
-
-
-        <div class="col-md-4 col-sm-6">
-            <div class="card text-center p-4">
-                <img src="static/intodeepRobot3.png" alt="Into The Deep Robot V3" class="robot-img">
-                <h4>Into The Deep V3 (2025-2026)</h4>
-                <div class="role-label"><strong>Designed by Sohm Shah (2021-2025).</strong></div>
-                <p>Description Unavailable</p>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-sm-6">
-            <div class="card text-center p-4">
-                <img src="static/intodeepRobot4.png" alt="Into The Deep Robot V4" class="robot-img">
-                <h4>Into The Deep V4 (2025-2026)</h4>
-                <div class="role-label"><strong>Designed by Sohm Shah (2021-2025).</strong></div>
-                <p>Description Unavailable</p>
-            </div>
-        </div>
-
-
-        <div class="col-md-4 col-sm-6">
-            <div class="card text-center p-4">
-                <img src="static/decodeRobot1.png" alt="DECODE Robot 1" class="robot-img">
-                <h4>DECODE V1 (2025-2026)</h4>
-                <div class="role-label"><strong>Designed by Brandan Grundy (2022-2026).</strong></div>
-                <p>Functioned as our main robot; modified with parts from DECODE 2.</p>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-sm-6">
-            <div class="card text-center p-4">
-                <img src="static/decodeRobot2.png" alt="DECODE Robot 2" class="robot-img">
-                <h4>DECODE V2 (2025-2026)</h4>
-                <div class="role-label"><strong>Designed by Brandan Grundy (2022-2026) and Sohm Shah (2021-2025).</strong></div>
-                <p>Functioned superior but due to time limits was unable to be used.</p>
-            </div>
-        </div>
+      </section>
     </div>
-</div>
+  </main>
 
-</div>
+  <footer>
+    <p>© 2026 Patent Pending</p>
+  </footer>
 
+  <script>
+    const CONFIG = {
+      companyName: "Mt. Carmel Robotics",
+      logoImagePath: "static/logo.png",
+      heroTitle: "Our Robots",
+      heroDescription: "Explore our CAD mechanical models and physical robot iterations designed and engineered across various FIRST Tech Challenge seasons.",
+      
+      images: [
+        "static/team1.png",
+        "static/team2.jpg",
+        "static/team3.png",
+        "static/team4.png"
+      ],
+      
+      cycleInterval: 5000
+    };
+
+    function toggleSeason(headerElement) {
+      const accordion = headerElement.parentElement;
+      accordion.classList.toggle("active");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("config-company-name").textContent = CONFIG.companyName;
+      document.getElementById("config-title").textContent = CONFIG.heroTitle;
+      document.getElementById("config-description").textContent = CONFIG.heroDescription;
+      document.getElementById("config-logo-img").src = CONFIG.logoImagePath;
+
+      const slideshowContainer = document.getElementById("slideshow");
+      CONFIG.images.forEach((imgSrc, index) => {
+        const slide = document.createElement("div");
+        slide.className = `bg-slide ${index === 0 ? "active" : ""}`;
+        slide.style.backgroundImage = `url('${imgSrc}')`;
+        slideshowContainer.appendChild(slide);
+      });
+
+      const slides = document.querySelectorAll(".bg-slide");
+      let currentIndex = 0;
+
+      if (slides.length > 1) {
+        setInterval(() => {
+          slides[currentIndex].classList.remove("active");
+          currentIndex = (currentIndex + 1) % slides.length;
+          slides[currentIndex].classList.add("active");
+        }, CONFIG.cycleInterval);
+      }
+    });
+  </script>
 </body>
 </html>
