@@ -1,210 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Robots - Patent Pending</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Award History - Mt. Carmel Robotics</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="static/logo.png">
+    body {
+      font-family: 'Roboto Condensed', 'Inter', -apple-system, sans-serif;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background-color: #121212;
+      overflow-x: hidden;
+    }
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    /* Header Styling */
+    header {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      color: #1a1a1a;
+      border-bottom: 4px solid #A30036;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
 
-    <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: url("static/team1.png") no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-        }
+    .main-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 5%;
+    }
 
-        .btn {
-            font-family: 'Roboto Condensed', sans-serif;
-            letter-spacing: 0.5px;
-            transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
-        }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #1a1a1a;
+    }
 
-        .btn:hover {
-            transform: translateY(-2px) scale(1.03);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-        }
+    .logo-icon {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+    }
 
-        .btn:active {
-            transform: scale(0.96);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-            transition: transform 0.08s ease;
-        }
+    .logo-text {
+      font-weight: 800;
+      font-size: 26px;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      color: #A30036;
+    }
 
-        .btn:focus-visible {
-            outline: 3px solid #FFC627;
-            outline-offset: 2px;
-        }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+      align-items: center;
+    }
 
-        .btn-interest {
-            position: relative;
-            overflow: hidden;
-            transform: scale(1);
-            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
-                        box-shadow 0.2s ease;
-        }
+    .nav-links li a {
+      text-decoration: none;
+      color: #1f1f1f;
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.2s ease;
+    }
 
-        .btn-interest:hover {
-            transform: scale(1.06);
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
-        }
+    .nav-links li a:hover {
+      color: #A30036;
+    }
 
-        .btn-interest:active {
-            transform: scale(0.94);
-        }
+    .nav-links li a.active {
+      color: #A30036;
+      border-bottom: 3px solid #FFC627;
+      padding-bottom: 2px;
+    }
 
-        /* Nav buttons: white outline, transparent fill, compact sizing */
-        .btn-nav-outline {
-            background-color: transparent;
-            border: 1.5px solid #ffffff;
-            color: #ffffff;
-            padding: 0.35rem 0.85rem;
-            font-size: 0.9rem;
-            white-space: nowrap;
-        }
+    main {
+      flex: 1;
+      width: 100%;
+    }
 
-        .btn-nav-outline:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            color: #ffffff;
-        }
+    /* Hero Wrapper */
+    .hero-container {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 5% 20px;
+    }
 
-        .btn-home {
-            background-color: #FFC627;
-            border: 1.5px solid #ffffff;
-            color: #ffffff;
-            padding: 0.35rem 0.85rem;
-            font-size: 0.9rem;
-            white-space: nowrap;
-        }
+    .bg-slideshow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      overflow: hidden;
+    }
 
-        .btn-home:hover {
-            background-color: #e6b322;
-            border-color: #ffffff;
-            color: #ffffff;
-        }
+    .bg-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
 
-        .overlay {
-            background-color: rgba(0, 0, 0, 0.7);
-            min-height: 100vh;
-        }
+    .bg-slide.active {
+      opacity: 1;
+    }
 
-        .asu-red {
-            background-color: #8C1D40;
-        }
+    .bg-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        180deg, 
+        rgba(15, 15, 15, 0.40) 0%, 
+        rgba(15, 15, 15, 0.85) 75%, 
+        #121212 100%
+      );
+      z-index: -1;
+    }
 
-        h1, h4, p {
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
-        }
+    /* Hero Section Content */
+    .hero {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
 
-        .card {
-            font-family: 'Roboto Condensed', sans-serif;
-            background-color: rgba(0,0,0,0.75);
-            border-radius: 15px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            color: white;
-        }
+    .hero-content {
+      max-width: 850px;
+      margin: 0 auto;
+    }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
+    .hero-title {
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+      color: #FFC627;
+      text-shadow: none;
+    }
 
-        .robot-img {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 15px;
-            margin: 0 auto 15px auto;
-            border: 3px solid #8C1D40;
-            display: block;
-        }
+    .hero-description {
+      font-size: 20px;
+      line-height: 1.4;
+      font-weight: 500;
+      color: #ffffff;
+      margin-bottom: 0;
+      text-shadow: none;
+    }
 
-        .container-title {
-            padding-top: 50px;
-            padding-bottom: 30px;
-        }
-    </style>
+    /* Process Sections (Content Wrapper) */
+    .flat-content-wrapper {
+      background-color: #121212;
+      width: 100%;
+      padding-bottom: 60px;
+    }
+
+    .process-section {
+      width: 100%;
+      padding: 10px 5% 40px;
+    }
+
+    .process-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #1c1c1c;
+      border: 2px solid #A30036;
+      border-top: 6px solid #FFC627;
+      border-radius: 12px;
+      padding: 24px 32px 32px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .process-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .process-card {
+      background: #242424;
+      border: 1px solid #333333;
+      border-left: 5px solid #A30036;
+      border-radius: 8px;
+      padding: 20px 24px;
+    }
+
+    .process-card h3 {
+      font-size: 22px;
+      color: #FFC627;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .process-card p {
+      font-size: 15px;
+      line-height: 1.5;
+      color: #d0d0d0;
+      margin-bottom: 8px;
+    }
+
+    .process-details {
+      list-style-type: disc;
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .process-details li {
+      font-size: 15px;
+      line-height: 1.4;
+      color: #e0e0e0;
+    }
+
+    .process-details li strong {
+      color: #FFC627;
+    }
+
+    footer {
+      background: #A30036;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      border-top: 3px solid #FFC627;
+    }
+
+    @media (max-width: 900px) {
+      .main-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .hero-title {
+        font-size: 38px;
+      }
+
+      .hero-description {
+        font-size: 17px;
+      }
+
+      .process-container {
+        padding: 20px;
+      }
+
+      .process-card h3 {
+        font-size: 19px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div class="overlay">
+  <header>
+    <nav class="main-nav">
+      <a href="home.html" class="logo-container">
+        <img src="static/logo.png" alt="Logo" class="logo-icon" id="config-logo-img">
+        <span class="logo-text" id="config-company-name">Mt. Carmel Robotics</span>
+      </a>
 
-    <nav class="navbar navbar-dark asu-red">
-  <div class="container justify-content-between align-items-center">
-    <a href="index.html" class="d-flex align-items-center text-decoration-none">
-      <img src="static/logo.png" alt="Patent Pending Logo" style="height:50px; margin-right:10px;">
-      <span class="navbar-brand mb-0 h1"><strong>Patent Pending #11285</strong></span>
-    </a>
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="robots.html">Our Robots</a></li>
+        <li><a href="awards.html" class="active">Award History</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <div class="d-flex nav-links gap-2">
-        <a href="index.html" class="btn btn-home">Home</a>
-        <a href="roster.html" class="btn btn-nav-outline">Team</a>
-        <a href="robots.html" class="btn btn-nav-outline">Our Robots</a>
-        <a href="awards.html" class="btn btn-nav-outline">Award History</a>
-        <a href="Schedule.html" class="btn btn-nav-outline">Schedule</a>
-        <a href="contact.html" class="btn btn-nav-outline">Contact Us</a>
+  <main>
+    <div class="hero-container">
+      <div class="bg-slideshow" id="slideshow"></div>
+      <div class="bg-overlay"></div>
+
+      <section class="hero">
+        <div class="hero-content">
+          <h1 class="hero-title" id="config-title">Award History</h1>
+          <p class="hero-description" id="config-description">
+            A celebration of our achievements, operational excellence, and honors won by Patent Pending 11285 across past FIRST Tech Challenge competition seasons.
+          </p>
+        </div>
+      </section>
     </div>
-  </div>
-</nav>
 
-<!-- Page Title -->
-<div class="container text-center container-title">
-    <h1 class="display-4 fw-bold">Our Awards</h1>
-    <p class="lead">Awards won by Patent Pending 11285.</p>
-</div>
-
-<!-- Robots Grid -->
-<div class="container pb-5">
-    <div class="row g-4">
-        <div class="col-md-4 col-sm-6">
-            <div class="card text-center p-4">
-                <img src="static/roverruckusLogo.png" alt="roverruckusLogo" class="robot-img">
-                <h4>Rover Ruckus (2019-2020)</h4>
-                <div class="role-label"><strong>Leagure Tournament Control Award</strong></div>
-                <p>We won the League Tournament! The Control Award is given to teams that make the use of sensors and software to navigate through the field efficiently.</p>
+    <div class="flat-content-wrapper">
+      <section class="process-section">
+        <div class="process-container">
+          
+          <div class="process-list">
+            
+            <div class="process-card">
+              <h3><i class="fa-solid fa-trophy"></i> Centerstage (2023-2024)</h3>
+              <p>During the Centerstage season, our team demonstrated outstanding gameplay and strategic collaboration on the field.</p>
+              <ul class="process-details">
+                <li><strong>Winning Alliance Award:</strong> Awarded to the winning teams of the Alliance Competition.</li>
+              </ul>
             </div>
-        </div>
 
-
-        <div class="col-md-4 col-sm-6">
-            <div class="card text-center p-4">
-                <img src="static/skystoneLogo.png" alt="skystoneLogo" class="robot-img">
-                <h4>Skystone (2020-2021)</h4>
-                <div class="role-label"><strong>Motivate Award</strong></div>
-                <p>We won the Motivate Award at the Euclid League Championship! The Motivate Award is given to teams who portray Gracious Professionalism.</p>
+            <div class="process-card">
+              <h3><i class="fa-solid fa-trophy"></i> Power Play (2022-2023)</h3>
+              <p>A highly successful season showcasing both advanced software automation and strong alliance execution.</p>
+              <ul class="process-details">
+                <li><strong>League Tournament Control Award:</strong> Given to teams that make exceptional use of sensors and software to navigate through the field efficiently.</li>
+                <li><strong>Winning Alliance Award:</strong> Awarded to the winning teams of the Alliance Competition.</li>
+              </ul>
             </div>
-        </div>
 
-
-        <div class="col-md-4 col-sm-6">
-            <div class="card text-center p-4">
-                <img src="static/powerplayLogo.png" alt="powerplayLogo" class="robot-img">
-                <h4>Power Play (2022-2023)</h4>
-                <div class="role-label"><strong>League Tournament Control Award and Winning Alliance Award</strong></div>
-                <p>We won the League Tournament Control Award and the Winning Alliance Award! The Control Award is given to teams that make the use of sensors and software to navigate through the field efficiently. The Winning Alliance Trophy is given to the winning teams of the Alliance Competition.</p>
+            <div class="process-card">
+              <h3><i class="fa-solid fa-trophy"></i> Skystone (2020-2021)</h3>
+              <p>Recognized for team culture, outreach, and exemplifying core values throughout the competition season.</p>
+              <ul class="process-details">
+                <li><strong>Motivate Award:</strong> Won at the Euclid League Championship; given to teams who portray outstanding Gracious Professionalism and team spirit.</li>
+              </ul>
             </div>
-        </div>
 
-        <div class="col-md-4 col-sm-6">
-            <div class="card text-center p-4">
-                <img src="static/centerstageLogo.png" alt="centerstageLogo" class="robot-img">
-                <h4>Centerstage (2023-2024)</h4>
-                <div class="role-label"><strong>Winning Alliance Award</strong></div>
-                <p>The Winning Alliance Award is given to the winning teams of the Alliance Competition.</p>
+            <div class="process-card">
+              <h3><i class="fa-solid fa-trophy"></i> Rover Ruckus (2019-2020)</h3>
+              <p>Highlighted by strong autonomous programming and sensor integration during league competition.</p>
+              <ul class="process-details">
+                <li><strong>League Tournament Control Award:</strong> Won at the League Tournament; given to teams that make efficient use of sensors and software to navigate the field.</li>
+              </ul>
             </div>
+
+          </div>
         </div>
+      </section>
     </div>
-</div>
+  </main>
 
-</div>
+  <footer>
+    <p>© 2026 Patent Pending</p>
+  </footer>
 
+  <script>
+    const CONFIG = {
+      companyName: "Mt. Carmel Robotics",
+      logoImagePath: "static/logo.png",
+      heroTitle: "Award History",
+      heroDescription: "A celebration of our achievements, operational excellence, and honors won by Patent Pending 11285 across past FIRST Tech Challenge competition seasons.",
+      
+      images: [
+        "static/team1.png",
+        "static/team2.jpg",
+        "static/team3.png",
+        "static/team4.png"
+      ],
+      
+      cycleInterval: 5000
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("config-company-name").textContent = CONFIG.companyName;
+      document.getElementById("config-title").textContent = CONFIG.heroTitle;
+      document.getElementById("config-description").textContent = CONFIG.heroDescription;
+      document.getElementById("config-logo-img").src = CONFIG.logoImagePath;
+
+      const slideshowContainer = document.getElementById("slideshow");
+      CONFIG.images.forEach((imgSrc, index) => {
+        const slide = document.createElement("div");
+        slide.className = `bg-slide ${index === 0 ? "active" : ""}`;
+        slide.style.backgroundImage = `url('${imgSrc}')`;
+        slideshowContainer.appendChild(slide);
+      });
+
+      const slides = document.querySelectorAll(".bg-slide");
+      let currentIndex = 0;
+
+      if (slides.length > 1) {
+        setInterval(() => {
+          slides[currentIndex].classList.remove("active");
+          currentIndex = (currentIndex + 1) % slides.length;
+          slides[currentIndex].classList.add("active");
+        }, CONFIG.cycleInterval);
+      }
+    });
+  </script>
 </body>
 </html>
