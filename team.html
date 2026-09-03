@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Team - Mt. Carmel Robotics</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto Condensed', 'Inter', -apple-system, sans-serif;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background-color: #121212;
+      overflow-x: hidden;
+    }
+
+    /* Header Styling */
+    header {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      color: #1a1a1a;
+      border-bottom: 4px solid #A30036;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .main-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 5%;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #1a1a1a;
+    }
+
+    .logo-icon {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .logo-text {
+      font-weight: 800;
+      font-size: 26px;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      color: #A30036;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #1f1f1f;
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links li a:hover {
+      color: #A30036;
+    }
+
+    .nav-links li a.active {
+      color: #A30036;
+      border-bottom: 3px solid #FFC627;
+      padding-bottom: 2px;
+    }
+
+    main {
+      flex: 1;
+      width: 100%;
+    }
+
+    /* Hero Wrapper */
+    .hero-container {
+      position: relative;
+      width: 100%;
+      min-height: 35vh;
+      display: flex;
+      align-items: flex-start;
+      padding-top: 50px;
+    }
+
+    .bg-slideshow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      overflow: hidden;
+    }
+
+    .bg-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+
+    .bg-slide.active {
+      opacity: 1;
+    }
+
+    .bg-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        180deg, 
+        rgba(15, 15, 15, 0.40) 0%, 
+        rgba(15, 15, 15, 0.85) 75%, 
+        #121212 100%
+      );
+      z-index: -1;
+    }
+
+    /* Hero Section Content */
+    .hero {
+      width: 100%;
+      padding: 20px 5% 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+      color: #FFC627;
+      text-shadow: none;
+    }
+
+    .hero-description {
+      font-size: 20px;
+      line-height: 1.5;
+      font-weight: 500;
+      color: #ffffff;
+      max-width: 800px;
+      margin: 0 auto;
+      text-shadow: none;
+    }
+
+    /* Team Content Wrapper */
+    .flat-content-wrapper {
+      background-color: #121212;
+      width: 100%;
+      padding-bottom: 80px;
+    }
+
+    .team-section {
+      width: 100%;
+      padding: 20px 5% 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    /* Team Card Styling */
+    .team-card {
+      background: #1c1c1c;
+      border: 2px solid #A30036;
+      border-top: 6px solid #FFC627;
+      border-radius: 12px;
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: background-color 0.2s ease;
+    }
+
+    .team-card:hover {
+      background: #242424;
+    }
+
+    .member-avatar-container {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #FFC627;
+      padding: 4px;
+      background: #121212;
+      margin-bottom: 20px;
+    }
+
+    .member-avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: #333;
+    }
+
+    .member-name {
+      font-size: 26px;
+      font-weight: 800;
+      color: #FFC627;
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+
+    .member-role {
+      font-size: 15px;
+      font-weight: 700;
+      color: #A30036;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 14px;
+      background: rgba(255, 198, 39, 0.15);
+      padding: 4px 12px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 198, 39, 0.3);
+    }
+
+    .member-desc {
+      font-size: 15px;
+      line-height: 1.5;
+      color: #d0d0d0;
+      font-weight: 500;
+    }
+
+    footer {
+      background: #A30036;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      border-top: 3px solid #FFC627;
+    }
+
+    @media (max-width: 900px) {
+      .main-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .hero-title {
+        font-size: 38px;
+      }
+
+      .hero-description {
+        font-size: 17px;
+      }
+
+      .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="main-nav">
+      <a href="home.html" class="logo-container">
+        <img src="static/logo.png" alt="Logo" class="logo-icon" id="config-logo-img">
+        <span class="logo-text" id="config-company-name">Mt. Carmel Robotics</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="team.html" class="active">Team</a></li>
+        <li><a href="robots.html">Our Robots</a></li>
+        <li><a href="awards.html">Award History</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero-container">
+      <div class="bg-slideshow" id="slideshow"></div>
+      <div class="bg-overlay"></div>
+
+      <section class="hero">
+        <h1 class="hero-title" id="config-title">Our Team</h1>
+        <p class="hero-description" id="config-description">
+          Meet the students powering Patent Pending Robotics FTC #11285.
+        </p>
+      </section>
+    </div>
+
+    <div class="flat-content-wrapper">
+      <section class="team-section">
+        <div class="team-grid">
+
+          <div class="team-card">
+            <div class="member-avatar-container">
+              <img src="static/jake-t.png" alt="Jake Tong" class="member-avatar">
+            </div>
+            <h2 class="member-name">Jake Tong</h2>
+            <div class="member-role">President, Lead Software</div>
+            <p class="member-desc">Oversees software architecture, autonomous control loops, and overall team operations.</p>
+          </div>
+
+          <div class="team-card">
+            <div class="member-avatar-container">
+              <img src="static/cat-t.png" alt="Cat Tran" class="member-avatar">
+            </div>
+            <h2 class="member-name">Cat Tran</h2>
+            <div class="member-role">Vice President, Lead Outreach</div>
+            <p class="member-desc">Manages community engagement, sponsorship pipelines, and club event planning.</p>
+          </div>
+
+          <div class="team-card">
+            <div class="member-avatar-container">
+              <img src="static/sid-m.png" alt="Sid Ma'esh" class="member-avatar">
+            </div>
+            <h2 class="member-name">Sid Ma'esh</h2>
+            <div class="member-role">Treasurer</div>
+            <p class="member-desc">Directs financial allocation, budget tracking, and hardware procurement strategies.</p>
+          </div>
+
+          <div class="team-card">
+            <div class="member-avatar-container">
+              <img src="static/cyrus-k.png" alt="Cyrus King" class="member-avatar">
+            </div>
+            <h2 class="member-name">Cyrus King</h2>
+            <div class="member-role">Secretary</div>
+            <p class="member-desc">Maintains engineering documentation, meeting logs, and team communication channels.</p>
+          </div>
+
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Patent Pending</p>
+  </footer>
+
+  <script>
+    const CONFIG = {
+      companyName: "Mt. Carmel Robotics",
+      logoImagePath: "static/logo.png",
+      heroTitle: "Our Team",
+      heroDescription: "Meet the students powering Patent Pending Robotics FTC #11285.",
+      
+      images: [
+        "static/team1.png",
+        "static/team2.jpg",
+        "static/team3.png",
+        "static/team4.png"
+      ],
+      
+      cycleInterval: 5000
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("config-company-name").textContent = CONFIG.companyName;
+      document.getElementById("config-title").textContent = CONFIG.heroTitle;
+      document.getElementById("config-description").textContent = CONFIG.heroDescription;
+      document.getElementById("config-logo-img").src = CONFIG.logoImagePath;
+
+      const slideshowContainer = document.getElementById("slideshow");
+      CONFIG.images.forEach((imgSrc, index) => {
+        const slide = document.createElement("div");
+        slide.className = `bg-slide ${index === 0 ? "active" : ""}`;
+        slide.style.backgroundImage = `url('${imgSrc}')`;
+        slideshowContainer.appendChild(slide);
+      });
+
+      const slides = document.querySelectorAll(".bg-slide");
+      let currentIndex = 0;
+
+      if (slides.length > 1) {
+        setInterval(() => {
+          slides[currentIndex].classList.remove("active");
+          currentIndex = (currentIndex + 1) % slides.length;
+          slides[currentIndex].classList.add("active");
+        }, CONFIG.cycleInterval);
+      }
+    });
+  </script>
+</body>
+</html>
