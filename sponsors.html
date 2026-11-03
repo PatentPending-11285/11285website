@@ -1,0 +1,505 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sponsors - Mt. Carmel Robotics</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto Condensed', 'Inter', sans-serif;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #121212;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            color: #1a1a1a;
+            border-bottom: 4px solid #A30036;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 5%;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #1a1a1a;
+        }
+
+        .logo-icon {
+            height: 44px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 26px;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            color: #A30036;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #1f1f1f;
+            font-size: 18px;
+            font-weight: 700;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            color: #A30036;
+        }
+
+        .nav-links li a.active {
+            border-bottom: 3px solid #FFC627;
+            padding-bottom: 2px;
+        }
+
+        main {
+            flex: 1;
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 65px 5% 55px;
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(15, 15, 15, 0.5),
+                    #121212
+                ),
+                url("static/team1.png") center/cover no-repeat;
+        }
+
+        .hero {
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            color: #FFC627;
+        }
+
+        .hero-description {
+            font-size: 20px;
+            line-height: 1.5;
+            font-weight: 500;
+            color: #ffffff;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Sponsor Section */
+        .sponsor-section {
+            width: 100%;
+            padding: 25px 5% 80px;
+        }
+
+        .sponsor-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #1c1c1c;
+            border: 2px solid #A30036;
+            border-top: 6px solid #FFC627;
+            border-radius: 12px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .section-heading {
+            font-size: 28px;
+            font-weight: 800;
+            color: #FFC627;
+            margin-bottom: 25px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        /* Sponsor Card */
+        .sponsor-card {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+            background: #242424;
+            border: 1px solid #383838;
+            border-left: 6px solid #A30036;
+            border-radius: 10px;
+            padding: 30px 35px;
+            min-height: 175px;
+            transition: transform 0.25s ease,
+                        border-color 0.25s ease,
+                        background 0.25s ease;
+        }
+
+        .sponsor-card:hover {
+            transform: translateY(-4px);
+            background: #292929;
+            border-color: #FFC627;
+        }
+
+        .sponsor-logo-container {
+            width: 200px;
+            min-width: 200px;
+            height: 105px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .sponsor-logo {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .sponsor-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .sponsor-name {
+            font-size: 32px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .sponsor-label {
+            color: #FFC627;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Sponsor Description */
+        .sponsor-about {
+            margin-top: 35px;
+            padding: 30px;
+            background: #242424;
+            border: 1px solid #383838;
+            border-left: 6px solid #FFC627;
+            border-radius: 10px;
+        }
+
+        .sponsor-about h2 {
+            color: #FFC627;
+            font-size: 27px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .sponsor-about p {
+            color: #d0d0d0;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        .sponsor-about .thank-you {
+            color: #ffffff;
+            font-weight: 700;
+            border-top: 1px solid #444;
+            padding-top: 18px;
+            margin-top: 18px;
+        }
+
+        .sponsor-website {
+            display: inline-block;
+            margin-top: 8px;
+            color: #FFC627;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .sponsor-website:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: #A30036;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            border-top: 3px solid #FFC627;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .main-nav {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .hero-title {
+                font-size: 38px;
+            }
+
+            .hero-description {
+                font-size: 17px;
+            }
+
+            .sponsor-container {
+                padding: 20px;
+            }
+
+            .sponsor-card {
+                gap: 20px;
+                padding: 22px;
+            }
+
+            .sponsor-logo-container {
+                width: 150px;
+                min-width: 150px;
+            }
+
+            .sponsor-name {
+                font-size: 25px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .sponsor-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .sponsor-logo-container {
+                width: 200px;
+                height: 110px;
+            }
+
+            .sponsor-name {
+                font-size: 25px;
+            }
+
+            .sponsor-about {
+                padding: 22px;
+            }
+
+            .sponsor-about h2 {
+                font-size: 23px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav class="main-nav">
+
+            <a href="index.html" class="logo-container">
+                <img
+                    src="static/logo.png"
+                    alt="Mt. Carmel Robotics Logo"
+                    class="logo-icon"
+                >
+                <span class="logo-text">Mt. Carmel Robotics</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="robots.html">Our Robots</a></li>
+                <li><a href="awards.html">Award History</a></li>
+                <li><a href="schedule.html">Schedule</a></li>
+                <li><a href="sponsors.html" class="active">Sponsors</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Hero -->
+        <div class="hero-container">
+
+            <section class="hero">
+
+                <h1 class="hero-title">Our Sponsors</h1>
+
+                <p class="hero-description">
+                    We are grateful for the organizations that support
+                    Patent Pending 11285. Their generosity helps us
+                    innovate, build, and compete in FIRST Tech Challenge.
+                </p>
+
+            </section>
+
+        </div>
+
+        <!-- Sponsors -->
+        <section class="sponsor-section">
+
+            <div class="sponsor-container">
+
+                <h2 class="section-heading">
+                    Our Current Sponsors
+                </h2>
+
+                <!-- Surface Optics Sponsor Card -->
+                <div class="sponsor-card">
+
+                    <div class="sponsor-logo-container">
+
+                        <img
+                            src="static/surfaceopticlogo.png"
+                            alt="Surface Optics Corporation Logo"
+                            class="sponsor-logo"
+                        >
+
+                    </div>
+
+                    <div class="sponsor-info">
+
+                        <span class="sponsor-label">
+                            Proud Sponsor
+                        </span>
+
+                        <h3 class="sponsor-name">
+                            Surface Optics Corporation
+                        </h3>
+
+                    </div>
+
+                </div>
+
+                <!-- About Surface Optics -->
+                <div class="sponsor-about">
+
+                    <h2>
+                        Proudly Sponsored By Surface Optics Corporation
+                    </h2>
+
+                    <p>
+                        We are proud to partner with Surface Optics Corporation,
+                        a San Diego-based company specializing in optical
+                        engineering, advanced imaging technology, and
+                        precision measurement solutions.
+                    </p>
+
+                    <p>
+                        Surface Optics develops specialized scientific
+                        instruments, optical measurement systems,
+                        hyperspectral imaging technology, and advanced
+                        surface coatings. Its technologies support a range
+                        of industries and applications, including aerospace,
+                        space exploration, scientific research, and
+                        manufacturing.
+                    </p>
+
+                    <p>
+                        Their commitment to engineering excellence,
+                        scientific innovation, and solving complex
+                        technical challenges reflects many of the same
+                        values we strive to uphold as a FIRST Tech
+                        Challenge robotics team.
+                    </p>
+
+                    <p class="thank-you">
+                        We sincerely thank Surface Optics Corporation
+                        for supporting Patent Pending 11285. Their
+                        partnership helps us continue designing,
+                        building, programming, and competing while
+                        pursuing our passion for STEM and robotics.
+                    </p>
+
+                    <a
+                        href="https://surfaceoptics.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="sponsor-website"
+                    >
+                        Visit Surface Optics Corporation →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Patent Pending 11285 | Mt. Carmel Robotics</p>
+    </footer>
+
+</body>
+</html>
